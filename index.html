@@ -58,25 +58,36 @@
     </form>
     
     <script>
-        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+        document.getElementById('bookingForm').addEventListener('submit', async function(event) {
             event.preventDefault();
-            
+
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const date = document.getElementById('date').value;
-            
-            // Отправка данных на сервер
-            fetch('https://mytwaapp.sam5213.repl.co/recordBooking', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ name, email, date })
-            }).then(response => response.json())
-              .then(data => alert(`Спасибо за запись! Ваш запрос принят.`))
-              .catch(error => 
-                  console.error('Ошибка:', error));
-                  alert('Произошла ошибка при отправке данных.');
+
+            // Логируем данные перед отправкой
+            console.log('Отправляемые данные:', { name, email, date });
+
+            try {
+                const response = await fetch('/recordBooking', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, date })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Сервер вернул неверный статус: ' + response.status);
+                }
+
+                const data = await response.json();
+                console.log('Ответ сервера:', data);
+                alert(`Спасибо за запись! Ваш запрос принят.`);
+            } catch (error) {
+                console.error('Ошибка:', error);
+                alert('Произошла ошибка при отправке данных.');
+            }
         });
     </script>
 </body>
