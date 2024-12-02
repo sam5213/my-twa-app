@@ -74,7 +74,9 @@
                 body: JSON.stringify({ name, email, date })
             }).then(response => response.json())
               .then(data => alert(`Спасибо за запись! Ваш запрос принят.`))
-              .catch(error => console.error('Ошибка:', error));
+              .catch(error => 
+                  console.error('Ошибка:', error));
+                  alert('Произошла ошибка при отправке данных.');
         });
     </script>
 </body>
