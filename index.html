@@ -69,7 +69,7 @@
             console.log('Отправляемые данные:', { name, email, date });
 
             try {
-                const response = await fetch('https://mytwaapp.sam5213.repl.co/recordBooking', {
+                const response = await fetch('/recordBooking', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
