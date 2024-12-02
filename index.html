@@ -71,8 +71,11 @@
             try {
                 const response = await fetch('https://replit.com/@gulmirazhb/mytwaapp/recordBooking', {
                     method: 'POST',
+                    mode: 'no-cors',
+                    crossDomain: true,
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': true
                     },
                     body: JSON.stringify({ name, email, date })
                 });
