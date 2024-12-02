@@ -69,7 +69,7 @@
             console.log('Отправляемые данные:', { name, email, date });
 
             try {
-                const response = await fetch('/recordBooking', {
+                const response = await fetch('https://replit.com/@gulmirazhb/mytwaapp/recordBooking', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
